@@ -1,0 +1,10 @@
+Meteor.startup ->
+
+  Template.index.helpers
+
+    images: -> Images.find()
+
+  Template.index.onRendered ->
+
+    if Images.count() > 0
+      $('#images-selector').multiselect()

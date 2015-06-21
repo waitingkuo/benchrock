@@ -1,0 +1,18 @@
+template(name="index")
+  h1 index
+  form#form
+    div
+      h3 Images: 
+      select#images-selector(multiple="mutiple")
+        each images
+          option(value="{{image}}") {{image}}
+    div
+      h3 Machines:
+      select#machines-selector(multiple="mutiple")
+        each machines
+          option(value="{{machine}}") {{machine}}
+
+    br
+    br
+    br
+    button.btn.btn-primary#run Run

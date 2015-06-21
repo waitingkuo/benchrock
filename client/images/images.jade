@@ -1,0 +1,15 @@
+template(name="images")
+
+  table.table(role="table")
+    thead
+      tr
+        th Image
+        th
+      each images
+        tr
+          td {{image}}
+          td
+            +quickRemoveButton collection="Images" _id=this._id class="btn btn-danger"
+  
+  +quickForm collection="Images" id="insertImageForm" type="insert"  
+

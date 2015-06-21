@@ -1,0 +1,14 @@
+template(name="machines")
+
+  table.table(role="table")
+    thead
+      tr
+        th Machine
+        th
+      each machines
+        tr
+          td {{machine}}
+          td
+            +quickRemoveButton collection="Machines" _id=this._id class="btn btn-danger"
+  
+  +quickForm collection="Machines" id="insertMachineForm" type="insert"  

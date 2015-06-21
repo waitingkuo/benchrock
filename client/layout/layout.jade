@@ -1,0 +1,18 @@
+template(name="layout")
+
+
+  nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        a.navbar-brand BenchRock
+      ul.nav.navbar-nav
+        li 
+          a(href="{{pathFor 'index'}}") Index
+        li 
+          a(href="{{pathFor 'machines'}}") Machines
+        li 
+          a(href="{{pathFor 'images'}}") Images
+  
+  .row
+    .container
+      +yield
