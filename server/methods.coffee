@@ -7,6 +7,9 @@ Meteor.startup ->
     'wrk': (images, machines)->
       if images.length == 0 or machines.length == 0
         return {}
+
+      wrkId = Wrks.insert {images:images, machines:machines}
+      console.log wrkId
       for image in images
         for machine in machines
           console.log image, machine
@@ -24,7 +27,8 @@ Meteor.startup ->
           #console.log latency, req
 
           runCmd('docker ' +config+' kill ' + containerId).trim()
-          Results.insert
+          WrkResults.insert
+            wrkId: wrkId
             image: image
             machine: machine
             latency: latency

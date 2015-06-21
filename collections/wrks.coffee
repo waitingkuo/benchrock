@@ -13,17 +13,17 @@ Wrks.attachSchema new SimpleSchema
 WrkResults.attachSchema new SimpleSchema
 
   wrkId:
-    type: [String]
+    type: String
 
   image:
-    type: [String]
+    type: String
 
   machine:
-    type: [String]
+    type: String
 
   latency:
-    type: [String]
+    type: String
 
   req:
-    type: [String]
+    type: String
   

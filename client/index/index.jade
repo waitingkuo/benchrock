@@ -1,18 +1,24 @@
 template(name="index")
-  h1 index
-  form#form
-    div
-      h3 Images: 
-      select#images-selector(multiple="mutiple")
-        each images
-          option(value="{{image}}") {{image}}
-    div
-      h3 Machines:
-      select#machines-selector(multiple="mutiple")
-        each machines
-          option(value="{{machine}}") {{machine}}
 
-    br
-    br
-    br
-    button.btn.btn-primary#run Run
+  table.table(role="table")
+    thead
+      tr
+        th #
+        th Images
+        th Machines
+        th
+    tbody
+      each wrks
+        tr
+          td {{this.index}}
+          td 
+            each images
+              p {{this}}
+          td
+            each machines
+              p {{this}}
+
+          td 
+            button.btn.btn-info#view-benchmark View
+
+            +quickRemoveButton collection="Wrks" _id=this._id class="btn btn-danger"

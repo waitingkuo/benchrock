@@ -1,0 +1,16 @@
+template(name="result")
+
+  table.table(role="table")
+    thead
+      tr
+        th Machine
+        th Image
+        th Avg Latency
+        th Requests per second
+    tbody
+      each results
+        tr
+          td {{machine}}
+          td {{image}}
+          td {{latency}}
+          td {{req}}
