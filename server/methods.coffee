@@ -22,13 +22,16 @@ Meteor.startup ->
           ip = runCmd('docker-machine ip ' + machine).trim()
           config = runCmd('docker-machine config ' + machine).trim()
           #FIXME a hack
-          if image == 'joshyoung360/expressbase'
-            containerId = runCmd('docker ' +config+' run -d -p 1212:3000 ' + image).trim()
-          else
-            containerId = runCmd('docker ' +config+' run -d -p 1212:80 ' + image).trim()
+          #if image == 'joshyoung360/expressbase'
+          #  containerId = runCmd('docker ' +config+' run -d -p 1212:3000 ' + image).trim()
+          #else
+          containerId = runCmd('docker ' +config+' run -d -p 1212:80 ' + image).trim()
 
-          Meteor.sleep(1000)
-          result = runCmd('wrk '+ wrk.options + ' http://'+ip+':1212')
+          Meteor.sleep(3000)
+          if wrk.options is undefined
+            result = runCmd('wrk http://'+ip+':1212')
+          else
+            result = runCmd('wrk '+ wrk.options + ' http://'+ip+':1212')
           lines = result.split '\n'
           latency = lines[3].trim().split(/\s+/)[1]
           threadReq = lines[4].trim().split(/\s+/)[1]
