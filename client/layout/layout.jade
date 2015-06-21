@@ -2,10 +2,11 @@ template(name="layout")
 
 
   nav.navbar.navbar-default
-    .container-fluid
+    .container
       .navbar-header
-        a.navbar-brand BenchRock
-      ul.nav.navbar-nav
+        a.navbar-brand(style="padding: 0;")
+          img(src="/img/logo.png", width="150")
+      ul.nav.navbar-nav(style="margin-left: 50px;")
         li 
           a(href="{{pathFor 'index'}}") Index
         li 

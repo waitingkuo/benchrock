@@ -5,3 +5,6 @@ Images.attachSchema new SimpleSchema
   image:
     type: String
 
+  port:
+    type: Number
+

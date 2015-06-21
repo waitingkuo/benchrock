@@ -6,6 +6,7 @@ template(name="index")
         th #
         th Images
         th Machines
+        th Options
         th
     tbody
       each wrks
@@ -17,6 +18,8 @@ template(name="index")
           td
             each machines
               p {{this}}
+          td
+            p {{options}}
 
           td 
             button.btn.btn-info#view-benchmark View

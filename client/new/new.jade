@@ -13,6 +13,15 @@ template(name="new")
           option(value="{{machine}}") {{machine}}
 
     br
+    div 
+      h3 Options (optinal)
+      input(type="text" id="options")
+      p -t threads (-t12)
+      p -c connections (-c40)
+      p -d duration  (-d10s)
+    
+
+    br
     br
     br
     button.btn.btn-primary#run Run

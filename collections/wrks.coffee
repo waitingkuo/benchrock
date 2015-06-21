@@ -8,6 +8,11 @@ Wrks.attachSchema new SimpleSchema
   machines:
     type: [String]
 
+  options:
+    type: String
+    optional: true
+
+
 @WrkResults = new Meteor.Collection 'wrkResults'
 
 WrkResults.attachSchema new SimpleSchema

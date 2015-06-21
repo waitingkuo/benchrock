@@ -4,10 +4,10 @@ Meteor.startup ->
   exec = Npm.require('child_process').exec
   Meteor.methods
 
-    wrkInit: (images, machines) ->
+    wrkInit: (images, machines, options) ->
       if images.length == 0 or machines.length == 0
         return {}
-      wrkId = Wrks.insert {images:images, machines:machines}
+      wrkId = Wrks.insert {images:images, machines:machines, options: options}
       return {wrkId: wrkId}
 
     wrkRun: (wrkId)->
@@ -21,14 +21,20 @@ Meteor.startup ->
           runCmd = Meteor.wrapAsync(exec)
           ip = runCmd('docker-machine ip ' + machine).trim()
           config = runCmd('docker-machine config ' + machine).trim()
-          containerId = runCmd('docker ' +config+' run -d -p 1212:80 ' + image).trim()
+          #FIXME a hack
+          if image == 'joshyoung360/expressbase'
+            containerId = runCmd('docker ' +config+' run -d -p 1212:3000 ' + image).trim()
+          else
+            containerId = runCmd('docker ' +config+' run -d -p 1212:80 ' + image).trim()
 
           Meteor.sleep(1000)
-          result = runCmd('wrk  http://'+ip+':1212')
+          result = runCmd('wrk '+ wrk.options + ' http://'+ip+':1212')
           lines = result.split '\n'
           latency = lines[3].trim().split(/\s+/)[1]
           threadReq = lines[4].trim().split(/\s+/)[1]
           req = lines[6].trim().split(/\s+/)[1]
+          if req == 'errors:'
+            req = lines[7].trim().split(/\s+/)[1]
           #console.log latency, req
 
           runCmd('docker ' +config+' kill ' + containerId).trim()
@@ -38,6 +44,7 @@ Meteor.startup ->
             machine: machine
             latency: latency
             req: req
+          Meteor.sleep(1000)
 
      
 

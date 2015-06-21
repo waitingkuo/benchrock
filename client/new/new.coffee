@@ -14,7 +14,8 @@ Meteor.startup ->
 
       images = $('#images-selector option:checked').map( -> $(@).val()).toArray()
       machines = $('#machines-selector option:checked').map( -> $(@).val()).toArray()
-      Meteor.call 'wrkInit', images, machines, (err, result) ->
+      options = $('#options').val()
+      Meteor.call 'wrkInit', images, machines, options, (err, result) ->
         if not err?
           console.log result
           if 'wrkId' of result
